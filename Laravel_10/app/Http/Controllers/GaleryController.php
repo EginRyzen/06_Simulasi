@@ -12,7 +12,7 @@ class GaleryController extends Controller
      */
     public function index()
     {
-        //
+        return view('Page.timeline');
     }
 
     /**
