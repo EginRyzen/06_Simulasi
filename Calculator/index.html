@@ -12,8 +12,34 @@
 
     <div class="container">
         <form name="form">
-            <input type="text" class="textarea" name="textarea">
+            <input type="text" class="textarea" name="textarea" value="0" readonly>
         </form>
+        <div class="buttons">
+            <input type="button" class="operator" value="C" onclick="clean()">
+            <input type="button" class="operator" value="DEL" onclick="del()">
+            <input type="button" class="operator" value="+" onclick="insert('+')">
+            <input type="button" class="operator" value="-" onclick="insert('-')">
+
+            <input type="button" class="button" value="1" onclick="insert(1)">
+            <input type="button" class="button" value="2" onclick="insert(2)">
+            <input type="button" class="button" value="3" onclick="insert(3)">
+            <input type="button" class="operator" value="*" onclick="insert('*')">
+
+            <input type="button" class="button" value="4" onclick="insert(4)">
+            <input type="button" class="button" value="5" onclick="insert(5)">
+            <input type="button" class="button" value="6" onclick="insert(6)">
+            <input type="button" class="operator" value="/" onclick="insert('/')">
+
+            <input type="button" class="button" value="7" onclick="insert(7)">
+            <input type="button" class="button" value="8" onclick="insert(8)">
+            <input type="button" class="button" value="9" onclick="insert(9)">
+            <input type="button" class="operator" value="." onclick="insert('.')">
+
+            <input type="button" class="operator" value="0" onclick="insert('0')">
+            <input type="button" class="operator" value="00" onclick="insert('00')">
+            <input type="button" class="operator" value="%" onclick="insert('%')">
+            <input type="button" class="operator" value="=" onclick="equal()">
+        </div>
     </div>
 
     <script src="script.js"></script>
