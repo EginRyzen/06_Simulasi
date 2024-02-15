@@ -30,17 +30,18 @@
                             class="img-size-50 mr-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
-                                Brad Diesel
+                                {{ Auth::user()->username }}
                                 {{-- <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> --}}
                             </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
+                            <p class="text-sm">{{ Auth::user()->name }}</p>
                             {{-- <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p> --}}
                         </div>
                     </div>
                     <!-- Message End -->
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer"><i class="fa fa-sign-out-alt"></i></a>
+                <a href="{{ url('logout') }}" class="dropdown-item dropdown-footer"><i
+                        class="fa fa-sign-out-alt"></i></a>
             </div>
         </li>
         <li class="nav-item">

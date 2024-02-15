@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -27,7 +31,57 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $email = User::where('email', $request->email)->first();
+
+            if ($email) {
+                return back()->with('alert', 'Email Sudah Terdaftar!!');
+            }
+
+            if ($request->password == $request->repassword) {
+                $data = [
+                    'username' => $request->username,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ];
+
+                $user = User::create($data);
+
+                Auth::login($user);
+
+                return redirect('timeline');
+            } else {
+                return back()->with('alert', 'Password Yang Anda Masukan Tidak Sama');
+            }
+        } catch (QueryException $e) {
+            return back()->with('alert', 'Terjadi kesalahan dalam melakukan operasi database.');
+        }
+    }
+
+    public function login(Request $request)
+    {
+        $email = User::where('email', $request->email)->first();
+
+        if (!$email) {
+            return back()->with('alert', 'Email Belum Terdaftar!!');
+        }
+
+        if (!Hash::check($request->password, $email->password)) {
+            return back()->with('alert', 'Password Yang Anda Masukan Salah!!');
+        }
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect('timeline');
+        } else {
+            return back();
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 
     /**

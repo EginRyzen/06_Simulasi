@@ -26,8 +26,13 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-
-                <form action="" method="post">
+                @if (session('alert'))
+                    <div class="alert alert-danger">
+                        {{ Session('alert') }}
+                    </div>
+                @endif
+                <form action="{{ url('login') }}" method="post">
+                    @csrf
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" required placeholder="Email">
                         <div class="input-group-append">

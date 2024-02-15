@@ -25,8 +25,14 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Register a new membership</p>
+                @if (session('alert'))
+                    <div class="alert alert-danger">
+                        {{ Session('alert') }}
+                    </div>
+                @endif
 
-                <form action="" method="post">
+                <form action="{{ url('/') }}" method="post">
+                    @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" required maxlength="100" name="name"
                             placeholder="Full name">
